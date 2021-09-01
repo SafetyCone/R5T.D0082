@@ -1,0 +1,3 @@
+R5T.D0082.I001 - Default implementation for GitHub operator service.
+
+GOALS:
