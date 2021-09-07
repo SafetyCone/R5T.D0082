@@ -1,0 +1,3 @@
+R5T.D0082.D001.Base - Base service definitions for IGitHubAuthenticationProvider service
+
+GOALS:

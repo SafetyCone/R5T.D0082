@@ -1,0 +1,3 @@
+R5T.D0082.D002.I001 - Default implementation for IGitHubClientProvider service.
+
+GOALS:

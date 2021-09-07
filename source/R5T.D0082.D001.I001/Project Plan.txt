@@ -1,0 +1,3 @@
+R5T.D0082.D001.I001 - Default implementation for IGitHubAuthenticationProvider service.
+
+GOALS:

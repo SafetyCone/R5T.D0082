@@ -1,0 +1,3 @@
+R5T.D0082.T000 - Uncategorized types related to the IGitHubOperator service
+
+GOALS:

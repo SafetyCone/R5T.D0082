@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Dacia\source\R5T.Dacia.T002\R5T.Dacia.T002.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Aalborg\source\R5T.Aalborg.Abstractions\R5T.Aalborg.Abstractions.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>

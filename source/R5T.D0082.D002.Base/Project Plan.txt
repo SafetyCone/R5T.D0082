@@ -1,0 +1,3 @@
+R5T.D0082.D002.Base - Base service definitions for IGitHubClientProvider service.
+
+GOALS:
