@@ -45,7 +45,7 @@ namespace R5T.D0082.I001
             return output;
         }
 
-        public async Task<long> CreateRepository(GitHubRepositorySpecification gitHubRepositorySpecification)
+        public async Task<long> CreateRepositoryNonIdempotent(GitHubRepositorySpecification gitHubRepositorySpecification)
         {
             var gitHubClient = await this.GitHubClientProvider.GetGitHubClient();
 
@@ -75,6 +75,26 @@ namespace R5T.D0082.I001
             var gitHubClient = await this.GitHubClientProvider.GetGitHubClient();
 
             await gitHubClient.Repository.Delete(owner, name);
+        }
+
+        public async Task<string> GetRepositoryCloneUrl(string owner, string name)
+        {
+            var gitHubClient = await this.GitHubClientProvider.GetGitHubClient();
+
+            var repository = await gitHubClient.Repository.Get(owner, name);
+
+            var checkoutURL = repository.CloneUrl;
+            return checkoutURL;
+        }
+
+        public async Task<long> GetRepositoryID(string owner, string name)
+        {
+            var gitHubClient = await this.GitHubClientProvider.GetGitHubClient();
+
+            var repository = await gitHubClient.Repository.Get(owner, name);
+
+            var repositoryID = repository.Id;
+            return repositoryID;
         }
     }
 }
