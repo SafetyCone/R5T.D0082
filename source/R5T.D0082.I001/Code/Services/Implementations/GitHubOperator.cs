@@ -67,10 +67,13 @@ namespace R5T.D0082.I001
                 gitHubRepositorySpecification.Organization,
                 newRepository);
 
+            // Wait a few seconds to allow any following operations that request the repository to succeed.
+            await Task.Delay(5000);
+
             return createdRepository.Id;
         }
 
-        public async Task DeleteRepository(string owner, string name)
+        public async Task DeleteRepositoryNonIdempotent(string owner, string name)
         {
             var gitHubClient = await this.GitHubClientProvider.GetGitHubClient();
 

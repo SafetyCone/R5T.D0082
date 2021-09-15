@@ -33,5 +33,29 @@ namespace System
                 return repositoryID;
             }
         }
+
+        /// <summary>
+        /// Takes longer due to needing to first check if the repository exists. Only if the repository does exist is it deleted.
+        /// </summary>
+        public static async Task DeleteRepositoryIdempotent(this IGitHubOperator gitHubOperator,
+            string owner,
+            string repositoryName)
+        {
+            var exists = await gitHubOperator.RepositoryExists(owner, repositoryName);
+            if(exists)
+            {
+                await gitHubOperator.DeleteRepositoryNonIdempotent(owner, repositoryName);
+            }
+        }
+
+        /// <summary>
+        /// Selects <see cref="DeleteRepositoryIdempotent(IGitHubOperator, string, string)"/> as the default.
+        /// </summary>
+        public static Task DeleteRepository(this IGitHubOperator gitHubOperator,
+            string owner,
+            string repositoryName)
+        {
+            return gitHubOperator.DeleteRepositoryIdempotent(owner, repositoryName);
+        }
     }
 }
