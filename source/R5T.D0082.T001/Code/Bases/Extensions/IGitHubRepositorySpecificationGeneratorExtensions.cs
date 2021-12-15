@@ -11,8 +11,14 @@ namespace System
         public static GitHubRepositorySpecification GetDefault(this IGitHubRepositorySpecificationGenerator _,
             string organization,
             string name,
-            string description)
+            string description,
+            bool isPrivate)
         {
+            var visibility = isPrivate
+                ? GitHubRepositoryVisibility.Private
+                : GitHubRepositoryVisibility.Public
+                ;
+
             var gitHubRepository = new GitHubRepositorySpecification()
             {
                 Organization = organization,
@@ -20,7 +26,7 @@ namespace System
                 Description = description,
 
                 InitializeWithReadMe = true,
-                Visibility = GitHubRepositoryVisibility.Public,
+                Visibility = visibility,
                 License = GitHubRepositoryLicense.MIT,
             };
 
@@ -29,14 +35,16 @@ namespace System
 
         public static GitHubRepositorySpecification GetSafetyConeDefault(this IGitHubRepositorySpecificationGenerator _,
             string name,
-            string description)
+            string description,
+            bool isPrivate)
         {
             var organization = Instances.GitHubOrganization.SafetyCone();
 
             return _.GetDefault(
                 organization,
                 name,
-                description);
+                description,
+                isPrivate);
         }
     }
 }
