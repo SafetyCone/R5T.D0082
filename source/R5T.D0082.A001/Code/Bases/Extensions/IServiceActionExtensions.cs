@@ -1,9 +1,9 @@
 ﻿using System;
 
-using Microsoft.Extensions.DependencyInjection;
-
-using R5T.Dacia;
 using R5T.Suebia;
+
+using R5T.T0062;
+using R5T.T0063;
 
 using R5T.D0082.D001.I001;
 using R5T.D0082.D002.I001;
@@ -13,10 +13,10 @@ using R5T.D0082.I001;
 
 namespace R5T.D0082.A001
 {
-    public static partial class IServiceCollectionExtensions
+    public static class IServiceActionExtensions
     {
-        public static ServiceAggregation AddGitHubOperatorServiceActions(this IServiceCollection services,
-            IServiceAction<ISecretsDirectoryFilePathProvider> secretsDirectoryFilePathProviderAction)
+        public static IServiceActionAggregation AddGitHubOperatorServiceActions(this IServiceAction services,
+               IServiceAction<ISecretsDirectoryFilePathProvider> secretsDirectoryFilePathProviderAction)
         {
             // Level 0.
             var gitHubProductHeaderValueProvider = services.AddHardCodedProductHeaderValueProviderAction();
@@ -34,13 +34,15 @@ namespace R5T.D0082.A001
             var gitHubOperator = services.AddGitHubOperatorAction(
                 gitHubClientProvider);
 
-            return new ServiceAggregation
+            var output = new ServiceActionAggregation
             {
                 GitHubAuthenticationProviderAction = gitHubAuthenticationProviderAction,
                 GitHubClientProviderAction = gitHubClientProvider,
                 GitHubOperatorAction = gitHubOperator,
                 ProductHeaderValueProviderAction = gitHubProductHeaderValueProvider,
             };
+
+            return output;
         }
     }
 }

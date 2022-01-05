@@ -2,7 +2,7 @@ using System;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using R5T.T0063;
+using R5T.Dacia;
 
 
 namespace R5T.D0082.D003.I001
@@ -12,11 +12,10 @@ namespace R5T.D0082.D003.I001
         /// <summary>
         /// Adds the <see cref="HardCodedProductHeaderValueProvider"/> implementation of <see cref="IProductHeaderValueProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static IServiceCollection AddHardCodedProductHeaderValueProvider(this IServiceCollection services)
+        public static IServiceAction<IProductHeaderValueProvider> AddHardCodedProductHeaderValueProviderAction(this IServiceCollection services)
         {
-            services.AddSingleton<IProductHeaderValueProvider, HardCodedProductHeaderValueProvider>();
-
-            return services;
+            var serviceAction = ServiceAction.New<IProductHeaderValueProvider>(() => services.AddHardCodedProductHeaderValueProvider());
+            return serviceAction;
         }
     }
 }

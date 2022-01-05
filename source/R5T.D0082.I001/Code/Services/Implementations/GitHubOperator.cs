@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Octokit;
 
-using R5T.Dacia;
+using R5T.T0064;
 
 using R5T.D0082.D002;
 using R5T.D0082.T000;
@@ -13,7 +13,7 @@ using R5T.D0082.T000;
 namespace R5T.D0082.I001
 {
     [ServiceImplementationMarker]
-    public class GitHubOperator : IGitHubOperator
+    public class GitHubOperator : IGitHubOperator, IServiceImplementation
     {
         private IGitHubClientProvider GitHubClientProvider { get; }
 

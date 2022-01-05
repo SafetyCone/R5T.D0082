@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Octokit;
 
-using R5T.Dacia;
+using R5T.T0064;
 
 using R5T.D0082.D001;
 using R5T.D0082.D003;
@@ -12,7 +12,7 @@ using R5T.D0082.D003;
 namespace R5T.D0082.D002.I001
 {
     [ServiceImplementationMarker]
-    public class GitHubClientProvider : IGitHubClientProvider
+    public class GitHubClientProvider : IGitHubClientProvider, IServiceImplementation
     {
         private IGitHubAuthenticationProvider GitHubAuthenticationProvider { get; }
         private IProductHeaderValueProvider ProductHeaderValueProvider { get; }

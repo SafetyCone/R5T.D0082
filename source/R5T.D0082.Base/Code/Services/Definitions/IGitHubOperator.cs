@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-using R5T.Dacia;
+using R5T.T0064;
 
 using R5T.D0082.T000;
 
@@ -9,7 +9,7 @@ using R5T.D0082.T000;
 namespace R5T.D0082
 {
     [ServiceDefinitionMarker]
-    public interface IGitHubOperator
+    public interface IGitHubOperator : IServiceDefinition
     {
         Task<long> CreateRepositoryNonIdempotent(GitHubRepositorySpecification gitHubRepositorySpecification);
         Task DeleteRepositoryNonIdempotent(string owner, string name);

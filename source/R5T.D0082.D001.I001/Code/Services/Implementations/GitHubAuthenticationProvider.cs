@@ -4,14 +4,15 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 using R5T.Aalborg;
-using R5T.Dacia;
 using R5T.Suebia;
+
+using R5T.T0064;
 
 
 namespace R5T.D0082.D001.I001
 {
     [ServiceImplementationMarker]
-    public class GitHubAuthenticationProvider : IGitHubAuthenticationProvider
+    public class GitHubAuthenticationProvider : IGitHubAuthenticationProvider, IServiceImplementation
     {
         private ISecretsDirectoryFilePathProvider SecretsDirectoryFilePathProvider { get; }
 

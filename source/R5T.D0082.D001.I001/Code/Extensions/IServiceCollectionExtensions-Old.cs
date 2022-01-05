@@ -2,9 +2,8 @@ using System;
 
 using Microsoft.Extensions.DependencyInjection;
 
+using R5T.Dacia;
 using R5T.Suebia;
-
-using R5T.T0063;
 
 
 namespace R5T.D0082.D001.I001
@@ -22,6 +21,18 @@ namespace R5T.D0082.D001.I001
                 ;
 
             return services;
+        }
+
+        /// <summary>
+        /// Adds the <see cref="GitHubAuthenticationProvider"/> implementation of <see cref="IGitHubAuthenticationProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// </summary>
+        public static IServiceAction<IGitHubAuthenticationProvider> AddGitHubAuthenticationProviderAction(this IServiceCollection services,
+            IServiceAction<ISecretsDirectoryFilePathProvider> secretsDirectoryFilePathProviderAction)
+        {
+            var serviceAction = ServiceAction.New<IGitHubAuthenticationProvider>(() => services.AddGitHubAuthenticationProvider(
+                secretsDirectoryFilePathProviderAction));
+
+            return serviceAction;
         }
     }
 }

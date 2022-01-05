@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 
-using Microsoft.Extensions.DependencyInjection;
-
+using R5T.T0062;
 using R5T.T0063;
 
 using R5T.D0082.D001;
@@ -10,21 +9,20 @@ using R5T.D0082.D003;
 
 namespace R5T.D0082.D002.I001
 {
-    public static partial class IServiceCollectionExtensions
+    public static class IServiceActionExtensions
     {
         /// <summary>
         /// Adds the <see cref="GitHubClientProvider"/> implementation of <see cref="IGitHubClientProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
         /// </summary>
-        public static IServiceCollection AddGitHubClientProvider(this IServiceCollection services,
+        public static IServiceAction<IGitHubClientProvider> AddGitHubClientProviderAction(this IServiceAction _,
             IServiceAction<IGitHubAuthenticationProvider> gitHubAuthenticationProviderAction,
             IServiceAction<IProductHeaderValueProvider> productHeaderValueProviderAction)
         {
-            services.AddSingleton<IGitHubClientProvider, GitHubClientProvider>()
-                .Run(gitHubAuthenticationProviderAction)
-                .Run(productHeaderValueProviderAction)
-                ;
+            var serviceAction = _.New<IGitHubClientProvider>(services => services.AddGitHubClientProvider(
+                gitHubAuthenticationProviderAction,
+                productHeaderValueProviderAction));
 
-            return services;
+            return serviceAction;
         }
     }
 }
