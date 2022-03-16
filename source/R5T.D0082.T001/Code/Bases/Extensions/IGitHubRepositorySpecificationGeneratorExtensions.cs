@@ -3,6 +3,8 @@
 using R5T.D0082.T000;
 using R5T.D0082.T001;
 
+using R5T.Magyar;
+
 
 namespace System
 {
@@ -42,6 +44,18 @@ namespace System
 
             return _.GetDefault(
                 organization,
+                name,
+                description,
+                isPrivate);
+        }
+
+        public static GitHubRepositorySpecification GetSafetyConeDefault(this IGitHubRepositorySpecificationGenerator _,
+            string name)
+        {
+            var description = Strings.Empty;
+            var isPrivate = false;
+
+            return _.GetSafetyConeDefault(
                 name,
                 description,
                 isPrivate);

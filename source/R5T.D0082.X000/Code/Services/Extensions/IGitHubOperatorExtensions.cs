@@ -10,6 +10,26 @@ namespace System
 {
     public static class IGitHubOperatorExtensions
     {
+        public static async Task DeleteRepository_SafetyCone(this IGitHubOperator gitHubOperator,
+            string repositoryName)
+        {
+            await gitHubOperator.DeleteRepository(
+                Instances.GitHubOrganization.SafetyCone(),
+                repositoryName);
+        }
+
+        public static async Task<string> GetRepositoryCloneUrl_SafetyCone(this IGitHubOperator gitHubOperator,
+            string repositoryName)
+        {
+            var organizationName = Instances.GitHubOrganization.SafetyCone();
+
+            var output = await gitHubOperator.GetRepositoryCloneUrl(
+                organizationName,
+                repositoryName);
+
+            return output;
+        }
+
         /// <summary>
         /// Uses the Safety Cone organization.
         /// </summary>
