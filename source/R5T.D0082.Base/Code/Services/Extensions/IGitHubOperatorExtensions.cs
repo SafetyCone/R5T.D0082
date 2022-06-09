@@ -9,6 +9,25 @@ namespace System
 {
     public static class IGitHubOperatorExtensions
     {
+        public static async Task InGitHubRepository(this IGitHubOperator gitHubOperator,
+            string owner, string name,
+            Func<IGitHubRepository, Task> gitHubRepositoryAction)
+        {
+            var gitHubRepository = await gitHubOperator.GetGitHubRepository(owner, name);
+
+            await gitHubRepositoryAction(gitHubRepository);
+        }
+
+        public static async Task<T> GetFromGitHubRepository<T>(this IGitHubOperator gitHubOperator,
+            string owner, string name,
+            Func<IGitHubRepository, Task<T>> gitHubRepositoryAction)
+        {
+            var gitHubRepository = await gitHubOperator.GetGitHubRepository(owner, name);
+
+            var output = await gitHubRepositoryAction(gitHubRepository);
+            return output;
+        }
+
         /// <summary>
         /// Chooses <see cref="CreateRepositoryIdempotent(IGitHubOperator, GitHubRepositorySpecification)"/> as the default.
         /// </summary>
@@ -29,7 +48,7 @@ namespace System
             }
             else
             {
-                var repositoryID = await gitHubOperator.CreateRepositoryNonIdempotent(gitHubRepositorySpecification);
+                var repositoryID = await gitHubOperator.CreateRepository_NonIdempotent(gitHubRepositorySpecification);
                 return repositoryID;
             }
         }
@@ -44,7 +63,7 @@ namespace System
             var exists = await gitHubOperator.RepositoryExists(owner, repositoryName);
             if(exists)
             {
-                await gitHubOperator.DeleteRepositoryNonIdempotent(owner, repositoryName);
+                await gitHubOperator.DeleteRepository_NonIdempotent(owner, repositoryName);
             }
         }
 

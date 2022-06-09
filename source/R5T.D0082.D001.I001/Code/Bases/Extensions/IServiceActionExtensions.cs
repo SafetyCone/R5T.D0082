@@ -11,7 +11,7 @@ namespace R5T.D0082.D001.I001
     public static class IServiceActionExtensions
     {
         /// <summary>
-        /// Adds the <see cref="GitHubAuthenticationProvider"/> implementation of <see cref="IGitHubAuthenticationProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="GitHubAuthenticationProvider"/> implementation of <see cref="IGitHubAuthenticationProvider"/> as a <see cref="Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton"/>.
         /// </summary>
         public static IServiceAction<IGitHubAuthenticationProvider> AddGitHubAuthenticationProviderAction(this IServiceAction _,
             IServiceAction<ISecretsDirectoryFilePathProvider> secretsDirectoryFilePathProviderAction)

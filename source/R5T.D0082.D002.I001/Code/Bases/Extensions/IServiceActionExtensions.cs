@@ -12,7 +12,7 @@ namespace R5T.D0082.D002.I001
     public static class IServiceActionExtensions
     {
         /// <summary>
-        /// Adds the <see cref="GitHubClientProvider"/> implementation of <see cref="IGitHubClientProvider"/> as a <see cref="ServiceLifetime.Singleton"/>.
+        /// Adds the <see cref="GitHubClientProvider"/> implementation of <see cref="IGitHubClientProvider"/> as a <see cref="Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton"/>.
         /// </summary>
         public static IServiceAction<IGitHubClientProvider> AddGitHubClientProviderAction(this IServiceAction _,
             IServiceAction<IGitHubAuthenticationProvider> gitHubAuthenticationProviderAction,
