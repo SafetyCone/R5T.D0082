@@ -63,7 +63,12 @@ namespace R5T.D0082.Construction
 
         public async Task TestGitHubOperator_CreateRepository()
         {
-            var repositorySpecification = Instances.GitHubRepositorySpecificationGenerator.GetSafetyConeDefault("Test", "Test Description");
+            /// Inputs.
+            bool isPrivate = true;
+
+
+            /// Run.
+            var repositorySpecification = Instances.GitHubRepositorySpecificationGenerator.GetSafetyConeDefault("Test", "Test Description", isPrivate);
 
             var gitHubOperator = this.ServiceProvider.GetRequiredService<IGitHubOperator>();
 
